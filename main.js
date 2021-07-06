@@ -26,53 +26,77 @@ const app={
     config: JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
     songs: [
         {
-          name: "Bệnh của anh",
+            name: "Your Name",
+            singer: "Sparkle ",
+            path: "./assets/music/music12.mp3",
+            image: "./assets/img/anh12.jpg",
+        },
+        {
+          name: "Bệnh Của Anh",
           singer: "Khói",
           path: "./assets/music/music1.mp3",
-          image: "./assets/img/anh2.jpg",
+          image: "./assets/img/anh1.jpg",
         },
         {
-          name: "Đường tôi chở em về",
+          name: "Đường Tôi Chở Em Về",
           singer: "Bùi Trường Linh",
           path: "./assets/music/music2.mp3",
-          image:"./assets/img/anh1.jpg",
+          image:"./assets/img/anh2.jpg",
         },
         {
-            name: "Let me down slowly",
-            singer: "Bùi Trường Linh",
+            name: "Anh Thanh Niên",
+            singer: "HuyR",
             path: "./assets/music/music3.mp3",
             image:"./assets/img/anh3.jpg",
         },
         {
-            name: "Senorita",
-            singer: "Shawn Mendes, Camila Cabello",
+            name: "Hai Đám Mây",
+            singer: "Khói",
             path: "./assets/music/music4.mp3",
             image:"./assets/img/anh4.jpg",
         },
         {
-            name: "Hello",
-            singer: "Adele",
+            name: "Mười Năm",
+            singer: "Đen Vâu",
             path: "./assets/music/music5.mp3",
             image:"./assets/img/anh5.jpg",
         },
         {
-            name: "Nắm lấy tay anh",
-            singer: "Tuấn Hưng",
+            name: "Tài Liệu Không Có Tiêu Đề",
+            singer: "Khói",
             path: "./assets/music/music6.mp3",
             image:"./assets/img/anh6.jpg",
         },
         {
-            name: "Anh thanh niên",
-            singer: "HuyR",
+            name: "Blue Tequila",
+            singer: "Táo",
             path: "./assets/music/music7.mp3",
             image:"./assets/img/anh7.jpg",
         },
         {
-            name: "Đường tôi chở em về",
+            name: "Dù Cho Mai Về Sau",
             singer: "Bùi Trường Linh",
-            path: "./assets/music/music2.mp3",
-            image:"./assets/img/anh1.jpg",
-          },
+            path: "./assets/music/music8.mp3",
+            image:"./assets/img/anh8.jpg",
+        },
+        {
+            name: "Về Bên Anh",
+            singer: "Jack",
+            path: "./assets/music/music9.mp3",
+            image:"./assets/img/anh9.jpg",
+        },
+        {
+            name: "Lạ Lùng",
+            singer: "Vũ",
+            path: "./assets/music/music10.mp3",
+            image:"./assets/img/anh10.jpg",
+        },
+        {
+            name: "Phi Điểu Và Ve Sầu",
+            singer: "Nhậm Nhiên",
+            path: "./assets/music/music11.mp3",
+            image:"./assets/img/anh11.jpg",
+        },
     ],
     setconfig: function(key,value){
         this.config[key] = value;
@@ -172,7 +196,7 @@ const app={
             }
             audio.play()
             _this.render()
-            this.scrollToActiveSong()
+            _this.scrollToActiveSong()
         }
         //Khi prev bài
         prevBtn.onclick = function(){
@@ -183,7 +207,7 @@ const app={
             }
             audio.play()
             _this.render()
-            this.scrollToActiveSong()
+            _this.scrollToActiveSong()
         }
         //Random bài hát
         randomBtn.onclick = function(e) {
@@ -221,15 +245,22 @@ const app={
         }
     },
 
-    scrollToActiveSong: function(){
-        setTimeout(()=>{
+    scrollToActiveSong: function () {
+        setTimeout(() => {
+          if (this.currentIndex <= 3) {
             $('.song.active').scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-
-            })
-        },300)
-    },
+              behavior: 'smooth',
+              block: 'end',
+            });
+          } else {
+            $('.song.active').scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
+          }
+        }, 300);
+      },
+    
     loadCurrentSong(){
         Headers.textContent = this.currentSong.name
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
