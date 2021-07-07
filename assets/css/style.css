@@ -90,6 +90,10 @@
     color: #666;
     padding: 18px;
     font-size: 18px;
+    cursor: pointer;
+  }
+  .control .btn:active{
+    color: var(--primary-color);
   }
   
   .control .btn.active {
@@ -118,7 +122,10 @@
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
   }
-  
+  .progress:hover{
+    background: #a8a5a5;
+    cursor: pointer;
+  }
   .progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -143,6 +150,7 @@
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
   }
   
   .song.active {

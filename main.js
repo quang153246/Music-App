@@ -139,8 +139,8 @@ const app={
         const cdThumbAnimate = cdThumb.animate([
             {transform: 'rotate(360deg)'}
         ],{
-            duration: 10000,
-            iterations: Infinity
+            duration: 15000,   //  CD quay mỗi vòng hết 15s
+            iterations: Infinity  //Quay vô hạn
         })
         cdThumbAnimate.pause()
 
@@ -172,7 +172,6 @@ const app={
             _this.isPlaying = false
             player.classList.remove('playing')
             cdThumbAnimate.pause()
-
         }
         
         //Tiến độ bài hát
@@ -184,7 +183,7 @@ const app={
         }
         //Tua bài
         progress.onchange = function(e){
-            const seekTime = audio.duration * e.target.value / 100
+            const seekTime = audio.duration /100 * e.target.value
             audio.currentTime = seekTime
         }
         //Khi next bài
@@ -245,6 +244,7 @@ const app={
         }
     },
 
+    
     scrollToActiveSong: function () {
         setTimeout(() => {
           if (this.currentIndex <= 3) {
@@ -255,10 +255,10 @@ const app={
           } else {
             $('.song.active').scrollIntoView({
               behavior: 'smooth',
-              block: 'center',
+              block: 'nearest',
             });
           }
-        }, 300);
+        }, 200);
       },
     
     loadCurrentSong(){
@@ -296,8 +296,10 @@ const app={
     },
 
     start: function(){
+
         //load config
         this.loadConfig();
+
         //Định nghĩa các thuộc tính cho object
         this.defineProperties();
 
@@ -306,6 +308,7 @@ const app={
 
         //Tải thông tin bài hát đầu tiên vào UI
         this.loadCurrentSong();
+
         //Render playlist
         this.render();
     }
